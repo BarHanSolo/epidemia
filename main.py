@@ -13,13 +13,13 @@ def breed(animals):
     animalsList = animals
     for a in animalsList:
         if (a[0])>=2 and (a[0])<=4:
-            if random.random() < 0.15:
+            if random.random() < (0.15 + random.uniform(-0.02, 0.02)):
                 if random.random() < countIllWithAge(animalsList, a[0])/countWithAge(animalsList, a[0]):
                     animalsList.append((0, 4))
                 else:
                     animalsList.append((0, 0))
         elif (a[0])>=5:
-            if random.random() < 0.10:
+            if random.random() < (0.10 + + random.uniform(-0.01, 0.01)):
                 if random.random() < countIllWithAge(animalsList, a[0])/countWithAge(animalsList, a[0]):
                     animalsList.append((0, 4))
                 else:
