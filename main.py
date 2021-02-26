@@ -1,4 +1,5 @@
 import random
+import xlwt
 
 def estTable(animalCond):
     animalList = []
@@ -136,19 +137,40 @@ def makeSimulation(length, contagiousness, contact):
 
     for x in range(simulationLength):  # every loop is one time unit
         # print(countIll(animals))
-        print(len(animals))
+        # print(len(animals))
 
         animals = infect(animals, contagiousnessPercent, contactAnimals)
         animals = breed(animals)
         animals = die(animals)
         animals = passTime(animals)
 
-        print("Year: " + str(x))
-        print(countIll(animals))
+        # print("Year: " + str(x))
+        # print(countIll(animals))
         # for a in animals:
         #    print(a)
         # print(len(animals))
+    return len(animals)
 
 
 if __name__ == '__main__':
-    makeSimulation(20, 5, 10)
+    #makeSimulation(20, 5, 10)
+    simulationDepth = 100
+    results = xlwt.Workbook(encoding="utf-8")
+    sheet = results.add_sheet("Wyniki")
+    sheet.write(0, 0, "Nr symulacji")
+    sheet.write(0, 1, "Zaraźliwość")
+    sheet.write(0, 2, "Ilość kontaktów")
+    sheet.write(0, 3, "Średnia ilość zwierząt na koniec po " + str(simulationDepth) + " powtórzeń symulacji")
+
+    z = 1
+    for zara in range(5, 25, 5):
+        listOfResults = []
+        for kontakt in range(10, 50, 10):
+            for x in range(0, simulationDepth):
+                listOfResults.append(makeSimulation(20, zara, kontakt))
+            sheet.write(z, 0, z)
+            sheet.write(z, 1, zara)
+            sheet.write(z, 2, kontakt)
+            sheet.write(z, 3, (sum(listOfResults) / len(listOfResults)))
+            z+=1
+    results.save("wynikiSymulacji.xls")
