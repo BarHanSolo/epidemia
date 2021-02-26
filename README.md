@@ -74,3 +74,7 @@ Na podstawie odchylenia standardowego z tematu zadania wylicza prawdopodobieńst
 2.4 Funkcja passTime
 
 Odpowiada za zmianę współczynników z upłwającym czasem. Jest ostatnią funkcją jednostki symulacji. Po wykonaniu tej funkcji statusy zwierząt są już statusami z następnego okresu. Zwiększa wiek każdego zwierzęcia o 1 oraz obniża status choroby o 1 (chyba, że zwierzę jest zdrowe).
+
+3. Wyniki
+
+Każda symulacja została wykonana 100 razy dla każdych warunków. Średnia ilość żywych zwierząt na koniec zostaje zapisana do tabeli w pliku xml. Warunki sparametryzowane to zaraźliwość (5 do 20% co 5 procent) oraz ilość kontaktów z innymi zwierzętami w stadzie (od 0 do 25 kontaktów z innymi zwierzętami).
