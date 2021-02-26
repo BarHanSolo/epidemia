@@ -64,11 +64,11 @@ def dieAge(animals):
 def dieIllness(animals):
     animalsList = animals
     for id, a in enumerate(animalsList):
-        if (a[0] > 0 and a[0] <= 3) and random.random() < (0.2 + random.uniform(-0.05, 0.05)):
+        if (a[0] > 0 and a[0] <= 3) and a[1]>1 and random.random() < (0.2 + random.uniform(-0.05, 0.05)):
             animalsList.pop(id)
-        elif (a[0] >= 4 and a[0] <= 5) and random.random() < (0.3 + random.uniform(-0.07, 0.07)):
+        elif (a[0] >= 4 and a[0] <= 5) and a[1]>1 and random.random() < (0.3 + random.uniform(-0.07, 0.07)):
             animalsList.pop(id)
-        elif a[0] >= 6 and random.random() < (0.5 + random.uniform(-0.15, 0.15)):
+        elif a[0] >= 6 and a[1]>1 and random.random() < (0.5 + random.uniform(-0.15, 0.15)):
             animalsList.pop(id)
     return animalsList
 
@@ -149,11 +149,11 @@ def makeSimulation(length, contagiousness, contact):
         # for a in animals:
         #    print(a)
         # print(len(animals))
+    #return countIll(animals)
     return len(animals)
 
 
 if __name__ == '__main__':
-    #makeSimulation(20, 5, 10)
     simulationDepth = 100
     results = xlwt.Workbook(encoding="utf-8")
     sheet = results.add_sheet("Wyniki")
@@ -165,12 +165,12 @@ if __name__ == '__main__':
     z = 1
     for zara in range(5, 25, 5):
         listOfResults = []
-        for kontakt in range(10, 50, 10):
+        for kontakt in range(0, 30, 5):
             for x in range(0, simulationDepth):
                 listOfResults.append(makeSimulation(20, zara, kontakt))
             sheet.write(z, 0, z)
             sheet.write(z, 1, zara)
             sheet.write(z, 2, kontakt)
-            sheet.write(z, 3, (sum(listOfResults) / len(listOfResults)))
-            z+=1
+            sheet.write(z, 3, (round(sum(listOfResults) / len(listOfResults))))
+            z += 1
     results.save("wynikiSymulacji.xls")
